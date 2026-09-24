@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Entreprises</title></head>
+<body>
+  <h1>Entreprises</h1>
+  {% if entreprises %}
+    <ul>
+      {% for e in entreprises %}
+        <li>{{ e.nom }} — {{ e.ville }} ({{ e.get_secteur_display }})</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>Aucune entreprise enregistrée.</p>
+  {% endif %}
+</body>
+</html>   

@@ -1,0 +1,32 @@
+[
+    {
+        "model": "stages.entreprise",
+        "pk": 1,
+        "fields": {
+            "nom": "sourouya",
+            "ville": "sokode",
+            "secteur": "Informatique",
+            "contact": "sourouya@gmail.com"
+        }
+    },
+    {
+        "model": "stages.entreprise",
+        "pk": 2,
+        "fields": {
+            "nom": "tchakala",
+            "ville": "sokode",
+            "secteur": "Informatique",
+            "contact": "tchakala@gmail.com"
+        }
+    },
+    {
+        "model": "stages.entreprise",
+        "pk": 3,
+        "fields": {
+            "nom": "djanta",
+            "ville": "lome",
+            "secteur": "Informatique",
+            "contact": "djanta@gmail.com"
+        }
+    }
+]
