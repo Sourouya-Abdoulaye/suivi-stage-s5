@@ -1,0 +1,9 @@
+from django.db import models
+
+
+class Competence(models.Model):
+    libelle = models.CharField(max_length=100)
+    
+    class Meta:
+        verbose_name="Competence"
+        verbose_name_plural="Competences"

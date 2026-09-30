@@ -11,3 +11,47 @@ Une migration : est un fichier Python déclaratif qui enregistre l'état du sch�
 
 
 ## 2- Analyse du parole de la responsable des stages  et identification du besoin
+
+### Models
+#### * Entreprise
+- Nom  
+- Ville  
+- Secteur
+- Contact
+
+#### * Offfres
+- titre
+- Description,  
+- Date_debut,  
+- Date_fin,  
+- Nb_places,  
+- Competence  
+
+#### * Personne
+- nom,  
+- prenom,  
+- sexe,  
+- date_naissance,  
+- email,  
+
+
+#### *  (Etudiant,tuteur_entreprise,enseignant_referent) herite de Personne
+
+#### * Etudiant
+- matricule,  
+- promotion
+
+### * competence
+- Libelle,  
+
+### * candidature
+- statut
+- date_depot
+
+### * stage
+- sujet
+
+
+### Les constraintes
+
+
