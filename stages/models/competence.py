@@ -7,3 +7,7 @@ class Competence(models.Model):
     class Meta:
         verbose_name="Competence"
         verbose_name_plural="Competences"
+
+    
+    def __str__(self):
+        return f"{self.libelle}"

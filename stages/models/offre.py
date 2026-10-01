@@ -18,3 +18,6 @@ class Offre(models.Model):
     class Meta:
         verbose_name = "Offre"
         verbose_name_plural = "Offres"
+
+    def __str__(self):
+        return f"{self.titre} - {self.Date_debut}"

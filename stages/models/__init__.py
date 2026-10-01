@@ -6,6 +6,7 @@ from .enseignant_referent import EnseignantReferent
 from .offre import Offre
 from .etudiant import Etudiant
 from .competence import Competence
+from .stage import Stage
 
 __all__ = [
     "Entreprise",
@@ -16,4 +17,5 @@ __all__ = [
     "EnseignantReferent",
     "TuteurEntreprise",
     "Candidature",
+    "Stage"
 ]

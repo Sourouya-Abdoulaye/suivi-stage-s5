@@ -28,5 +28,170 @@
             "secteur": "Informatique",
             "contact": "djanta@gmail.com"
         }
+    },
+
+    {
+        "model": "stages.competence",
+        "pk": 1,
+        "fields": {
+            "libelle": "Python"
+        }
+    },
+    {
+        "model": "stages.competence",
+        "pk": 2,
+        "fields": {
+            "libelle": "Django"
+        }
+    },
+    {
+        "model": "stages.competence",
+        "pk": 3,
+        "fields": {
+            "libelle": "JavaScript"
+        }
+    },
+    {
+        "model": "stages.competence",
+        "pk": 4,
+        "fields": {
+            "libelle": "Bases de données"
+        }
+    },
+
+    {
+        "model": "stages.enseignantreferent",
+        "pk": 1,
+        "fields": {
+            "nom": "Kossou",
+            "prenom": "Jean",
+            "sexe": "M",
+            "email": "jkossou@univ-togo.tg"
+        }
+    },
+    {
+        "model": "stages.enseignantreferent",
+        "pk": 2,
+        "fields": {
+            "nom": "Agnon",
+            "prenom": "Marie",
+            "sexe": "F",
+            "email": "magnon@univ-togo.tg"
+        }
+    },
+
+    {
+        "model": "stages.tuteurentreprise",
+        "pk": 1,
+        "fields": {
+            "nom": "Sourouya",
+            "prenom": "Paul",
+            "sexe": "M",
+            "email": "psourouya@sourouya.com"
+        }
+    },
+    {
+        "model": "stages.tuteurentreprise",
+        "pk": 2,
+        "fields": {
+            "nom": "Tchakala",
+            "prenom": "Awa",
+            "sexe": "F",
+            "email": "atchakala@tchakala.com"
+        }
+    },
+
+    {
+        "model": "stages.etudiant",
+        "pk": 1,
+        "fields": {
+            "matricule": "2024-001",
+            "nom": "Djomegnan",
+            "prenom": "Koffi",
+            "promotion": "2024",
+            "sexe": "M",
+            "email": "kdjomegnan@univ-togo.tg",
+            "competences": [1, 2, 4]
+        }
+    },
+    {
+        "model": "stages.etudiant",
+        "pk": 2,
+        "fields": {
+            "matricule": "2024-002",
+            "nom": "Amegan",
+            "prenom": "Afi",
+            "promotion": "2024",
+            "sexe": "F",
+            "email": "aamegan@univ-togo.tg",
+            "competences": [1, 3]
+        }
+    },
+
+    {
+        "model": "stages.stage",
+        "pk": 1,
+        "fields": {
+            "sujet": "Développement d'une API REST avec Django",
+            "enseignantReferent": 1,
+            "tuteurEntreprise": 1
+        }
+    },
+    {
+        "model": "stages.stage",
+        "pk": 2,
+        "fields": {
+            "sujet": "Application web de gestion des stages",
+            "enseignantReferent": 2,
+            "tuteurEntreprise": 2
+        }
+    },
+
+    {
+        "model": "stages.offre",
+        "pk": 1,
+        "fields": {
+            "titre": "Stage développeur back-end",
+            "entreprise": 1,
+            "Date_debut": "2025-06-01",
+            "Date_fin": "2025-08-31",
+            "Nb_places": 2,
+            "Description": "Développement d'API en Django/Python",
+            "competences": [1, 2, 4]
+        }
+    },
+    {
+        "model": "stages.offre",
+        "pk": 2,
+        "fields": {
+            "titre": "Stage full-stack",
+            "entreprise": 2,
+            "Date_debut": "2025-07-01",
+            "Date_fin": "2025-09-30",
+            "Nb_places": 1,
+            "Description": "Développement front/back avec JS et Django",
+            "competences": [1, 2, 3]
+        }
+    },
+
+    {
+        "model": "stages.candidature",
+        "pk": 1,
+        "fields": {
+            "statut": "en_attente",
+            "date_depot": "2025-05-10",
+            "etudiant": 1,
+            "offre": 1
+        }
+    },
+    {
+        "model": "stages.candidature",
+        "pk": 2,
+        "fields": {
+            "statut": "accepte",
+            "date_depot": "2025-05-12",
+            "etudiant": 2,
+            "offre": 2
+        }
     }
-]
+]   
