@@ -26,9 +26,9 @@ class EnseignantReferentAdmin(admin.ModelAdmin):
 
 @admin.register(TuteurEntreprise)
 class TuteurEntrepriseAdmin(admin.ModelAdmin):
-    list_display = ("id", "nom", "prenom", "sexe", "email")
-    list_filter = ("sexe",)
-    search_fields = ("nom", "prenom", "email")
+    list_display = ("id", "nom", "prenom", "sexe", "email","entreprise")
+    list_filter = ("sexe","entreprise")
+    search_fields = ("nom", "prenom", "email","entreprise")
 
 
 @admin.register(Etudiant)
@@ -36,9 +36,7 @@ class EtudiantAdmin(admin.ModelAdmin):
     list_display = ("matricule", "nom", "prenom", "promotion", "email")
     list_filter = ("promotion", "sexe")
     search_fields = ("matricule", "nom", "prenom", "email")
-    filter_horizontal = (
-        "competences",
-    ) 
+    filter_horizontal = ("competences",)
 
 
 @admin.register(Stage)
@@ -58,6 +56,7 @@ class OffreAdmin(admin.ModelAdmin):
 
 @admin.register(Candidature)
 class CandidatureAdmin(admin.ModelAdmin):
+    exclude = ["statut"]
     list_display = ("id", "etudiant", "offre", "statut", "date_depot")
     list_filter = ("statut", "date_depot")
     search_fields = ("etudiant__nom", "etudiant__prenom", "offre__titre")
