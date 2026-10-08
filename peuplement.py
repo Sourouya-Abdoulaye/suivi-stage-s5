@@ -187,6 +187,8 @@ stage2, _ = Stage.objects.get_or_create(
 )
 stage2.etudiants.add(et3)
 
-
-
 print("Peuplement terminé !")
+
+
+
+# les requetes
