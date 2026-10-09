@@ -7,13 +7,10 @@ from django.db import models
 class Entreprise(models.Model):
 
     SECTEURS = [
-        ("technologie", "Technologie"),
-        (
-            "sante",
-            "Sante",
-        ),
+        ("technologie", 'Technologie'),
+        ("sante","Sante",),
         ("commerce", "Commerce"),
-    ]
+        ]
 
     nom = models.CharField(max_length=100)
     ville = models.CharField(max_length=80)
@@ -21,7 +18,11 @@ class Entreprise(models.Model):
     contact = models.EmailField()
 
     class Meta:
-        constraints =[models.UniqueConstraint(fields=["nom", "ville"], name="unique_entreprise_nom_ville") ]
+        constraints = [
+            models.UniqueConstraint(
+                fields=["nom", "ville"], name="unique_entreprise_nom_ville"
+            )
+        ]
         ordering = ["nom"]
         verbose_name = "entreprise"
         verbose_name_plural = "entreprises"

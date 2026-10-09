@@ -90,16 +90,14 @@ pyproject.toml : declare les dependances (Django, etc.) — c'est la recette.
 uv.lock : verrouille les versions exactes de toutes les dependances —
 c'est ce qui garantit que uv sync sur une autre machine installe
 exactement les mêmes paquets.
+
 Commits suggeres
-feat: initialisation du projet Django (suivi_stages) avec uv
 
-feat(stages): modèle Entreprise avec unicite (nom, ville)
-
-feat(stages): declaration admin avec list_display et search_fields
-
-feat(stages): page liste des entreprises (vue, template, urls)
-
-chore: ajout db.sqlite3 au .gitignore
+initialisation du projet Django (suivi_stages) avec uv
+,creation de modèle Entreprise avec unicite (nom, ville)
+, declaration admin avec list_display et search_fields
+,page liste des entreprises (vue, template, urls)
+et ajout db.sqlite3 au .gitignore
 
 ## Restitution
 1. Retrouver l'environnement sur une autre machine
@@ -107,16 +105,15 @@ git clone <url-du-depot>
 cd suivi_stages
 uv sync
 
-uv sync lit uv.lock et installe les versions exactement verrouillees.
-C'est uv.lock qui garantit la reproductibilite.
+uv sync va lire uv.lock et installe les versions exactement verrouillees.
+
 
 2. Qui decide de la forme de la table ?
-Le fichier de migration. C'est lui qui contient le SQL execute par
-migrate. models.py est la source de verite pour generer les migrations,
+Le fichier de migration. C'est lui qui contient le SQL execute par migrate. models.py est la source de verite pour generer les migrations,
 mais c'est le fichier de migration qui, une fois ecrit, decide de la forme reelle de la table en base.
 
 3. Lire les erreurs de Django
-Template manquant : la page d'erreur listait les chemins cherches →
+Template manquant : la page d'erreur listait les chemins et dis
 le nom du fichier ou son emplacement etait mauvais.
 Contrainte d'unicite : le message citait les champs impliques
-(Nom and Ville) → on sait exactement quel couple est en conflit.
+(Nom and Ville) on sait exactement quel couple est en conflit.
