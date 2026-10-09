@@ -11,4 +11,8 @@ Candidature.objects.filter(statut='retenue').count()
 ## 5. les stages dont l’offre vient d’une entreprise de Sokodé ;
 Stage.objects.filter(tuteurEntreprise__entreprise__ville='Sokodé')  
 ## 6. les offres qui demandent au moins une compétence que possède un étudiant donné.
-Offre.objects.filter(competences__in=Etudiant.objects.get(id=1).competences.all())   
+Offre.objects.filter(competences__in=Etudiant.objects.get(id=1).competences.all())  
+### le Probleme: nous avons des doublons de le resultat , du faite que si un etudiant possede deux competences qui existe pour le meme offre  
+### resolution
+ajouter distinct pour eviter des doublons
+Offre.objects.filter(competences__in=Etudiant.objects.get(id=1).competences.all()).distinct();
