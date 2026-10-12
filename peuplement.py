@@ -9,14 +9,14 @@ from stages.models import (
     Candidature,
 )
 
-# Compétences (5) 
+# Compétences (5)
 c1, _ = Competence.objects.get_or_create(libelle="Python")
 c2, _ = Competence.objects.get_or_create(libelle="Django")
 c3, _ = Competence.objects.get_or_create(libelle="SQL")
 c4, _ = Competence.objects.get_or_create(libelle="JavaScript")
 c5, _ = Competence.objects.get_or_create(libelle="React")
 
-# Entreprises (3, dont 2 à Sokodé) 
+# Entreprises (3, dont 2 à Sokodé)
 e1, _ = Entreprise.objects.get_or_create(
     nom="Sokotech", ville="Sokodé", secteur="IT", contact="contact@sokotech.com"
 )
@@ -27,7 +27,7 @@ e3, _ = Entreprise.objects.get_or_create(
     nom="WebDev Lomé", ville="Lomé", secteur="Web", contact="contact@webdev.com"
 )
 
-# Enseignants Référents (2) 
+# Enseignants Référents (2)
 er1, _ = EnseignantReferent.objects.get_or_create(
     nom="Koffi",
     prenom="Jean",
@@ -43,7 +43,7 @@ er2, _ = EnseignantReferent.objects.get_or_create(
     email="mensah@univ.com",
 )
 
-# Tuteurs Entreprise (2) 
+# Tuteurs Entreprise (2)
 t1, _ = TuteurEntreprise.objects.get_or_create(
     nom="Agbeko",
     prenom="Kossi",
@@ -61,7 +61,7 @@ t2, _ = TuteurEntreprise.objects.get_or_create(
     entreprise=e2,
 )
 
-# Étudiants (5) avec compétences 
+# Étudiants (5) avec compétences
 et1, _ = Etudiant.objects.get_or_create(
     nom="Abdoulaye",
     prenom="Malik",
@@ -117,7 +117,7 @@ et5, _ = Etudiant.objects.get_or_create(
 )
 et5.competences.set([c1, c2, c5])
 
-# Offres (3) avec compétences 
+# Offres initiales (3)
 o1, _ = Offre.objects.get_or_create(
     titre="Développeur Django Junior",
     Description="Développer des applications web avec Django",
@@ -148,7 +148,38 @@ o3, _ = Offre.objects.get_or_create(
 )
 o3.competences.set([c4, c5])
 
-# Candidatures (6, statuts variés) 
+# AJOUT : 3 Offres supplémentaires pour valider la consigne (Total = 6)
+o4, _ = Offre.objects.get_or_create(
+    titre="Administrateur de Bases de Données",
+    Description="Optimisation de requêtes et gestion PostgreSQL",
+    Date_debut="2026-11-01",
+    Date_fin="2027-02-28",
+    Nb_places=1,
+    entreprise=e1,
+)
+o4.competences.set([c3])
+
+o5, _ = Offre.objects.get_or_create(
+    titre="Data Scientist Intern",
+    Description="Modélisation de données et scripts d'automatisation",
+    Date_debut="2026-12-15",
+    Date_fin="2027-04-15",
+    Nb_places=1,
+    entreprise=e2,
+)
+o5.competences.set([c1, c3])
+
+o6, _ = Offre.objects.get_or_create(
+    titre="Développeur Fullstack Python/React",
+    Description="Création d'APIs Django et intégration Front-end",
+    Date_debut="2026-11-01",
+    Date_fin="2027-03-31",
+    Nb_places=1,
+    entreprise=e3,
+)
+o6.competences.set([c1, c2, c5])
+
+# Candidatures (6)
 Candidature.objects.get_or_create(
     etudiant=et1, offre=o1, defaults={"statut": "retenue", "date_depot": "2026-10-01"}
 )
@@ -172,8 +203,7 @@ Candidature.objects.get_or_create(
     etudiant=et2, offre=o3, defaults={"statut": "refusée", "date_depot": "2026-10-05"}
 )
 
-# Stages (2, issus de candidatures retenues) 
-# Stage 1 : et1 retenu sur o1 (Sokotech) → tuteur = t1 (Sokotech)
+# Stages (2)
 stage1, _ = Stage.objects.get_or_create(
     sujet="Application de gestion des stages",
     enseignantReferent=er1,
@@ -181,14 +211,9 @@ stage1, _ = Stage.objects.get_or_create(
 )
 stage1.etudiants.add(et1)
 
-# Stage 2 : et3 retenu sur o2 (DataPro) → tuteur = t2 (DataPro)
 stage2, _ = Stage.objects.get_or_create(
     sujet="Tableau de bord analytique", enseignantReferent=er2, tuteurEntreprise=t2
 )
 stage2.etudiants.add(et3)
 
 print("Peuplement terminé !")
-
-
-
-# les requetes
