@@ -7,3 +7,9 @@ uv run manage.py migrate stages 0001
 uv run manage.py shell < peuplement.py
 uv run manage.py createsuperuser
 uv run manage.py runserver
+
+
+
+
+
+
