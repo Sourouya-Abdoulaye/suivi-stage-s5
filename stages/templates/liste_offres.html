@@ -1,0 +1,35 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}Toutes les Offres {% endblock %}
+
+{% block contenu %}
+<h1>Offres disponibles</h1>
+<div class="liste-offres">
+    {% for offre in offres %}
+        <div class="carte-offre">
+            <!-- Lien vers le détail de l'offre -->
+            <h2><a href="{% url 'stages:detail_offre' offre.pk %}">{{ offre.titre }}</a></h2>
+            
+            <p><strong>Entreprise :</strong> 
+                <!-- Lien vers le détail de l'entreprise -->
+                <a href="{% url 'stages:detail_entreprise' offre.entreprise.pk %}">{{ offre.entreprise.nom }}</a>
+            </p>
+            
+            <p><strong>Période :</strong> Du {{ offre.Date_debut }} au {{ offre.Date_fin }}</p>
+            <p><strong>Places disponibles :</strong> {{ offre.Nb_places }}</p>
+            
+            <div class="competences">
+                <strong>Compétences :</strong>
+                {% for comp in offre.competences.all %}
+                    <span class="badge">{{ comp.libelle }}</span>
+                {% empty %}
+                    Aucune compétence spécifiée.
+                {% endfor %}
+            </div>
+        </div>
+    {% empty %}
+        <p>Aucune offre disponible pour le moment.</p>
+    {% endfor %}
+</div>
+{% endblock %}
+
