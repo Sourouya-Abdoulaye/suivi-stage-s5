@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block titre %}Suivi Stage{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'stages/style.css' %}">
+</head>
+<body>
+    <nav class="navigation">
+        <ul class="navigation-liste">
+            <!-- Navigation globale sans adresses en dur -->
+            <li><a href="{% url 'stages:liste_offres' %}">Offres</a></li>
+            <li><a href="{% url 'stages:liste_entreprises' %}">Entreprise</a></li>
+            <li><a href="{% url 'stages:liste_stages' %}">Stages</a></li>
+        </ul>
+    </nav>
+
+    <main id="a">
+        {% block contenu %} {% endblock %}
+    </main>
+</body>
+</html>
