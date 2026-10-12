@@ -1,0 +1,44 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}Stages Actifs | TalentsS5{% endblock %}
+
+{% block contenu %}
+<div class="header-section">
+    <h1>Stages en cours d'exécution</h1>
+    <p class="subtitle">Suivi en temps réel des affectations et des encadrements de la promotion.</p>
+</div>
+
+<div class="liste-offres">
+    {% for s in stages %}
+        <div class="carte-offre">
+            <div class="carte-header">
+                <h2>Sujet : {{ s.sujet }}</h2>
+                <span class="badge-places" style="background-color: #fef3c7; color: #d97706;">En cours</span>
+            </div>
+            
+            <div class="carte-meta">
+                <span class="meta-item">
+                    🏢 Entreprise : <a href="{% url 'stages:detail_entreprise' s.tuteurEntreprise.entreprise.pk %}" class="entreprise-link">{{ s.tuteurEntreprise.entreprise.nom }}</a>
+                </span>
+                <span class="meta-item">🧑‍🏫 Référent : {{ s.enseignantReferent.prenom }} {{ s.enseignantReferent.nom }}</span>
+                <span class="meta-item">👔 Tuteur : {{ s.tuteurEntreprise.prenom }} {{ s.tuteurEntreprise.nom }}</span>
+            </div>
+            
+            <div class="competences" style="border-top: 1px solid var(--border); margin-top: 12px; padding-top: 12px;">
+                <strong style="font-size: 0.9rem; color: var(--text-muted); display: block; margin-bottom: 6px;">Étudiants affectés :</strong>
+                {% for etudiant in s.etudiants.all %}
+                    <span class="badge" style="background-color: #f1f5f9; color: var(--text-main); font-weight: 500; text-transform: none;">
+                        🎓 {{ etudiant.prenom }} {{ etudiant.nom }} ({{ etudiant.matricule }})
+                    </span>
+                {% empty %}
+                    <span class="no-badge">Aucun étudiant assigné</span>
+                {% endfor %}
+            </div>
+        </div>
+    {% empty %}
+        <div class="empty-state">
+            <p>Aucun stage n'est actuellement actif ou validé.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
