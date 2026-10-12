@@ -1,0 +1,45 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}{{ entreprise.nom }} | Profil Entreprise{% endblock %}
+
+{% block contenu %}
+<div class="detail-container">
+    <div class="detail-header">
+        <span class="tag-entreprise">Profil Entreprise</span>
+        <h1>{{ entreprise.nom }}</h1>
+    </div>
+
+    <div class="entreprise-profile-grid">
+        <div class="profile-item">
+            <span class="label">Secteur d'activité</span>
+            <span class="value">{{ entreprise.get_secteur_display }}</span>
+        </div>
+        <div class="profile-item">
+            <span class="label">Ville</span>
+            <span class="value">📍 {{ entreprise.ville }}</span>
+        </div>
+        <div class="profile-item">
+            <span class="label">Contact RH</span>
+            <span class="value">✉️ {{ entreprise.contact }}</span>
+        </div>
+    </div>
+
+    <div class="offres-section">
+        <h2>Offres à pourvoir chez {{ entreprise.nom }}</h2>
+        <div class="mini-liste-offres">
+            {% for offre in entreprise.offres.all %}
+                <div class="mini-carte">
+                    <h3><a href="{% url 'stages:detail_offre' offre.pk %}">{{ offre.titre }}</a></h3>
+                    <p>Calendrier : Du {{ offre.Date_debut }} au {{ offre.Date_fin }} ({{ offre.Nb_places }} places)</p>
+                </div>
+            {% empty %}
+                <p class="text-muted">Cette entreprise n'a pas d'offres actives actuellement.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <a href="{% url 'stages:liste_entreprises' %}" class="btn-retour">
+        <span class="arrow">←</span> Retour aux entreprises
+    </a>
+</div>
+{% endblock %}
