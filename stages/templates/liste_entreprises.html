@@ -1,0 +1,32 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}Liste des Entreprises | TalentsS5{% endblock %}
+
+{% block contenu %}
+<div class="header-section">
+    <h1>Entreprises Partenaires</h1>
+    <p class="subtitle">Découvrez les structures qui proposent des opportunités de stages.</p>
+</div>
+
+<div class="liste-entreprises-grid">
+    {% for e in entreprises %}
+        <div class="carte-entreprise">
+            <div class="carte-header">
+                <h2><a href="{% url 'stages:detail_entreprise' e.pk %}">{{ e.nom }}</a></h2>
+                <span class="badge-secteur">{{ e.get_secteur_display }}</span>
+            </div>
+            <div class="carte-meta">
+                <span class="meta-item">📍 {{ e.ville }}</span>
+                <span class="meta-item">✉️ {{ e.contact }}</span>
+            </div>
+            <div class="carte-action">
+                <a href="{% url 'stages:detail_entreprise' e.pk %}" class="btn-action">Voir le profil complet →</a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="empty-state">
+            <p>Aucune entreprise enregistrée pour le moment.</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}
