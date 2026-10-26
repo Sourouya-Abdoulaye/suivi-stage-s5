@@ -4,10 +4,17 @@
 
 {% block contenu %}
 <div class="detail-container">
-    <div class="detail-header">
+
+    <div style="display: flex; justify-content: space-between;" >
+         <div class="detail-header">
         <span class="tag-entreprise">Profil Entreprise</span>
         <h1>{{ entreprise.nom }}</h1>
     </div>
+
+    <a href="{% url 'stages:publier_offre' entreprise.pk %}"></a>
+    <button class="btn-action" type="button">Publier une offre</button>
+    </div>
+   
 
     <div class="entreprise-profile-grid">
         <div class="profile-item">

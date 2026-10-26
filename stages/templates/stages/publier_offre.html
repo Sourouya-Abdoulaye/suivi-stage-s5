@@ -1,0 +1,44 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}
+  {{ entreprise.nom }} - Publication de l'offre
+{% endblock %}
+
+{% block contenu %}
+  <h1>Nouvelle Offre</h1>
+
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button type="submit">Publier</button>
+  </form>
+
+  {% comment %}
+  <form method="post">
+    {% csrf_token %}
+    <p>
+      Titre<input type="text" name="titre" />
+    </p>
+    <p>
+      Desciption<Textarea name="description"></Textarea>
+    </p>
+    <p>
+      Date Debut<input type="date" name="date_debut" />
+    </p>
+    <p>
+      Date Fin<input type="date" name="date_fin" />
+    </p>
+    <p>
+      Nombre de place<input type="number" name="nb_places" />
+    </p>
+    <p>
+      {% for competence in competences %}
+        <p>
+          {{ competence.libelle }} <input type="checkbox" value="{{ competence.pk }}" name="competences" />
+        </p>
+      {% endfor %}
+    </p>
+
+    <button type="submit">Publier</button>
+  </form> {% endcomment %}
+{% endblock %}

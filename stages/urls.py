@@ -5,10 +5,15 @@ from .views import stage
 
 app_name = "stages"
 urlpatterns = [
+    # offres
     path('', offre.liste_offres, name="liste_offres"),
+    path("offres/publier/<int:entreprise_id>/",offre.publier_offre,name="publier_offre"),
+    
     path(
             "offre/<int:pk>/", offre.detail_offre, name="detail_offre"
         ),
+    
+    
     
     path('stages/', stage.liste_stages, name="liste_stages"),
         path(
