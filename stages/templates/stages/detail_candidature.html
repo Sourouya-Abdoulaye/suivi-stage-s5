@@ -1,0 +1,16 @@
+{% extends 'stages/base.html' %}
+
+{% block titre %}
+  {{ offre.libelle }} - Candidature
+{% endblock %}
+
+{% block contenu %}
+  <h1>Detaill Candidature</h1>
+
+  <div>{{candidature.etudiant}}</div>
+  <div>{{candidature.offre}}</div>
+  <div>{{candidature.date_depot}}</div>
+
+  <a href="{% url 'stages:liste_offres' %}">Liste offres</a>
+
+{% endblock %}

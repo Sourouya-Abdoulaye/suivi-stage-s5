@@ -1,34 +1,63 @@
 {% extends 'stages/base.html' %}
 
-{% block titre %}{{ offre.titre }} | TalentsS5{% endblock %}
+{% block titre %}
+  {{ offre.titre }} | TalentsS5
+{% endblock %}
 
 {% block contenu %}
-<div class="detail-container">
+  <div class="detail-container">
     <div class="detail-header">
-        <h1>{{ offre.titre }}</h1>
-        <p class="entreprise-label">
-            Publié par : 🏢 <a href="{% url 'stages:detail_entreprise' offre.entreprise.pk %}"><strong>{{ offre.entreprise.nom }}</strong></a>
-        </p>
+      <h1>{{ offre.titre }}</h1>
+      <p class="entreprise-label">
+        Publié par : 🏢 <a href="{% url 'stages:detail_entreprise' offre.entreprise.pk %}"><strong>{{ offre.entreprise.nom }}</strong></a>
+      </p>
     </div>
 
     <div class="description-bloc">
-        <h3>Description du poste</h3>
-        <p>{{ offre.Description }}</p>
+      <h3>Description du poste</h3>
+      <p>{{ offre.Description }}</p>
     </div>
 
     <div class="infos-pratiques">
-        <div class="info-card">
-            <span class="info-label">Période du stage</span>
-            <span class="info-value">Du {{ offre.Date_debut }} au {{ offre.Date_fin }}</span>
-        </div>
-        <div class="info-card">
-            <span class="info-label">Places disponibles</span>
-            <span class="info-value">{{ offre.Nb_places }} poste{{ offre.Nb_places|pluralize }}</span>
-        </div>
+      <div class="info-card">
+        <span class="info-label">Période du stage</span>
+        <span class="info-value">Du {{ offre.Date_debut }} au {{ offre.Date_fin }}</span>
+      </div>
+      <div class="info-card">
+        <span class="info-label">Places disponibles</span>
+        <span class="info-value">{{ offre.Nb_places }} poste{{ offre.Nb_places|pluralize }}</span>
+      </div>
     </div>
 
-    <a href="{% url 'stages:liste_offres' %}" class="btn-retour">
-        <span class="arrow">←</span> Retour aux offres
-    </a>
-</div>
+    <h3>Candidatures</h3>
+    <div class="info-card">
+      {% for candidature in candidatures %}
+        <div>
+          <div class="carte-offre" style="display: flex;justify-content: space-between; align-items: baseline;">
+            <div>{{ candidature }}</div>
+
+            {% if candidature.statut != 'en_akjkjttente' %}
+              <div>
+                <form action="{% url 'stages:traiter_candidature' candidature.pk %}" method="post">
+                  {% csrf_token %}
+                  {{ form }}
+                  <button type="submit">Accepter</button>
+                </form>
+                <form action="{% url 'stages:traiter_candidature' candidature.pk %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit">Refuseé</button>
+                </form>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      {% empty %}
+        <div>
+          <span class="info-label">Places disponibles</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <a href="{% url 'stages:liste_offres' %}" class="btn-retour"><span class="arrow">←</span> Retour aux offres</a>
+  </div>
 {% endblock %}

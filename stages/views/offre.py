@@ -15,11 +15,14 @@ def liste_offres(request):
 
 
 def detail_offre(request, pk):
-    offre = get_object_or_404(Offre, pk=pk)
+    offre = Offre.objects.prefetch_related("candidatures").get(pk=pk)
+
+    candidatures = offre.candidatures.all()
+
     return render(
         request,
         "stages/detail_offre.html",
-        {"offre": offre},
+        {"offre": offre,"candidatures":candidatures},
     )
 
 

@@ -1,6 +1,7 @@
 from django.db import models
 from .etudiant import Etudiant
 from .offre import Offre
+import datetime
 
 
 class Candidature(models.Model):
@@ -11,7 +12,7 @@ class Candidature(models.Model):
     ]
 
     statut = models.CharField(max_length=20, choices=STATUS, default="en_attente")
-    date_depot = models.DateField(auto_now=True)
+    date_depot = models.DateField(default=datetime.date.today)
     etudiant = models.ForeignKey(
         Etudiant, on_delete=models.SET_NULL, related_name="candidatures", null=True
     )

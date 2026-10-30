@@ -1,7 +1,6 @@
 from django.db import models
 from .competence import Competence
 from .entreprise import Entreprise
-
 from django.core.exceptions import ValidationError
 
 
@@ -18,8 +17,8 @@ class Offre(models.Model):
     )
     
     def clean(self):
-       if self.Date_debut >= self.Date_fin:
-           
+       if self.Date_debut >= self.Date_fin:         
+            #   
             raise ValidationError(
                {
                    "Date_debut":"la date debut est plus grand que date de fin",
